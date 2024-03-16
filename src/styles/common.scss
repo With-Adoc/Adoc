@@ -1,0 +1,17 @@
+@import "./reset.scss";
+@import "./font.scss";
+@import "./variable.scss";
+
+body {
+  font-family: 'Pretendard';
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background: none;
+}
