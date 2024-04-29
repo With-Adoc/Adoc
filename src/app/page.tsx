@@ -1,7 +1,11 @@
+'use client'
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "./page.module.scss";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className={styles.wrap}>
       <header className={styles.header}>
@@ -31,7 +35,7 @@ export default function Home() {
       <section className={styles.hospital}>
         <h2 className={styles.title}>리뷰가 많은 ADHD 병원</h2>
         <ul>
-          <li>
+          <li onClick={() => router.push('/hospital-list')}>
             <div>
               <div>
                 <span>소민정신건강의학과의원</span>

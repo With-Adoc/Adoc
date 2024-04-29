@@ -1,0 +1,133 @@
+.wrap {
+  max-width: 440px;
+  margin: 0 auto;
+  overflow: hidden;
+  color: #333333;
+}
+.header {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  button {
+    position: absolute;
+    left: 16px;
+  }
+  h1 {
+    width: 100%;
+  }
+}
+.filter {
+  border-top: 1px solid #E6E6E6;
+  border-bottom: 1px solid #E6E6E6;
+  background: #F9F9F9;
+  ul {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    li {
+      padding: 8px 12px;
+      background: #ffffff;
+      border: 1px solid #D9D9D9;
+      border-radius: 999px;
+      font-size: 15px;
+      &:not(:last-child) {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+.sort {
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #E6E6E6;
+  padding: 0 12px;
+  font-size: 15px;
+  span {
+    color: #BFBFBF;
+  }
+}
+.lists {
+  ul {
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 16px 21px 16px;
+      &:not(:last-child) {
+        border-bottom: 1px solid #E6E6E6;
+      }
+      .info {
+        .chip {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 8px;
+          span {
+            display: flex;
+            align-items: center;
+            height: 24px;
+            border-radius: 4px;
+            background: #F2F2F2;
+            color: #8C8C8C;
+            font-weight: 500;
+            font-size: 12px;
+            padding: 0 8px;
+            &.active {
+              background: #FFF1E3;
+              color: #FE9934;
+            }
+            &:not(:last-child) {
+              margin-right: 4px;
+            }
+          }
+        }
+        .title {
+          font-weight: 700;
+          margin-bottom: 4px;
+        }
+        .scoreArea {
+          display: flex;
+          align-items: center;
+          margin-bottom: 4px;
+          font-size: 14px;
+          .score {
+            font-weight: 700;
+          }
+          .reviewCnt {
+            font-weight: 400;
+          }
+        }
+        .address {
+          font-size: 12px;
+          font-weight: 500;
+          color: #666666;
+        }
+      }
+    }
+  }
+}
+.footer {
+  padding: 18px 16px;
+  height: 265px;
+  background: #f2f2f2;
+  .footerLogo {
+    margin-bottom: 12px;
+  }
+  p {
+    display: flex;
+    align-items: center;
+    margin: 0 0 12px 12px;
+    span {
+      margin-left: 6px;
+    }
+    &:last-child {
+      margin-top: 28px;
+    }
+  }
+}

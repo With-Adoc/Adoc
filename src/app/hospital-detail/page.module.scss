@@ -1,0 +1,81 @@
+.wrap {
+  max-width: 440px;
+  margin: 0 auto;
+  overflow: hidden;
+  color: #333333;
+}
+.header {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  button {
+    position: absolute;
+    left: 16px;
+  }
+  h1 {
+    width: 100%;
+  }
+}
+
+.hospitalInfo {
+  padding: 0 16px;
+  border-bottom: 1px solid #b3b3b3;
+  .hospitalImg {
+    margin: 12px 0 28px 0;
+    border-radius: 9.4px;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 4px;
+    height: 27px;
+    line-height: 27px;
+  }
+  .scoreArea {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 15px;
+    height: 23px;
+    .score {
+      font-weight: 700;
+    }
+    .reviewCnt {
+      font-weight: 400;
+    }
+  }
+  .address {
+    height: 23px;
+    line-height: 23px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #666666;
+    margin-bottom: 24px;
+  }
+}
+.btnArea {
+  height: 100px;
+}
+.footer {
+  padding: 18px 16px;
+  height: 265px;
+  background: #f2f2f2;
+  .footerLogo {
+    margin-bottom: 12px;
+  }
+  p {
+    display: flex;
+    align-items: center;
+    margin: 0 0 12px 12px;
+    span {
+      margin-left: 6px;
+    }
+    &:last-child {
+      margin-top: 28px;
+    }
+  }
+}
