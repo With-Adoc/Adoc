@@ -1,0 +1,113 @@
+.wrap {
+  height: 100%;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  overflow: hidden;
+  * {
+    font-family: "Pretendard";
+    max-width: 440px;
+  }
+}
+.header {
+  // background-color: #84cdc0;
+  width: 100%;
+  height: 450px;
+  margin-bottom: 2rem;
+  border-radius: 0 0 20px 20px;
+  .headerImg {
+    display: block;
+    height: 6rem;
+    width: 6rem;
+    width: 320px;
+    height: 266px;
+    margin: 0 auto 0;
+    padding: 3rem;
+  }
+  h1 {
+    display: flex;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    height: 4rem;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    display: flex;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    font-size: 1rem;
+    height: 4rem;
+    color: #333333;
+  }
+}
+.main {
+  padding: 1rem 1.2rem 0 1.2rem;
+  color: #333333;
+}
+.summary {
+  display: block;
+  line-height: 1.4rem;
+  margin-bottom: 4rem;
+}
+.section01,
+.section02,
+.section03 {
+  display: block;
+  line-height: 1.4rem;
+  margin-bottom: 1rem;
+  h1 {
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.8rem;
+    margin-bottom: 1.7rem;
+    &::before {
+      content: "";
+      // position: absolute;
+      width: 0.1rem;
+      height: 2.2rem;
+      background: #333333;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+  }
+  p {
+    display: flex;
+    margin-bottom: 1.7rem;
+  }
+}
+.reference {
+  display: block;
+  padding: 1rem 1.2rem 1rem 1.2rem;
+  p {
+    color: #999999;
+    line-height: 1.4rem;
+  }
+}
+.search {
+  display: flex;
+  justify-content: center;
+  height: 112px;
+  border-top: 1px solid var(--border-gray);
+  padding-top: 16px;
+  margin-bottom: 30px;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 408px;
+    height: 63px;
+    border-radius: 8px;
+    background: var(--button-orange);
+    span {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23.4px;
+      color: var(--color-white);
+      // margin-right: 12px;
+    }
+  }
+}

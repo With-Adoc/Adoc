@@ -1,0 +1,94 @@
+.wrap {
+  height: 100%;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 30px;
+  * {
+    font-family: "Pretendard";
+    max-width: 440px;
+    // min-width: 375px;
+  }
+}
+
+.survey {
+  margin: 30px;
+  .progressbar {
+    margin: 30px auto;
+
+    &_num {
+      text-align: end;
+      margin-bottom: 10px;
+      letter-spacing: 5px;
+    }
+    &_indicator {
+      border: #d9d9d9 1px solid;
+      border-radius: 1.2rem;
+      height: 10px;
+
+      &__bar {
+        overflow: hidden;
+        margin: 0;
+        display: block;
+        height: 100%;
+        background-color: #fea143;
+      }
+    }
+  }
+
+  .questions {
+    &_question {
+      margin-bottom: 30px;
+      &__titl {
+        font-size: larger;
+        font-weight: 800;
+        line-height: 25px;
+        margin-bottom: 10px;
+      }
+      &__subTitl {
+        font-size: smaller;
+        color: #d9d9d9;
+        line-height: 20px;
+      }
+    }
+
+    &_answer {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      margin: 0;
+      > label {
+        height: 100%;
+        margin: 5px;
+        border: #d9d9d9 1px solid;
+        border-radius: 0.3rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      &__input {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
+      // > label:has(input:checked) {
+      //   border: red 1px solid;
+      // }
+
+      &__span {
+        height: 40px;
+        line-height: 40px;
+        border-radius: 5px;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+  }
+}

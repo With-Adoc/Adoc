@@ -1,0 +1,151 @@
+.wrap {
+  height: 100%;
+  width: 100%;
+  max-width: 440px;
+  margin: 30px auto;
+  overflow: hidden;
+  * {
+    font-family: "Pretendard";
+    max-width: 440px;
+    // min-width: 375px;
+  }
+}
+
+.search {
+  display: flex;
+  width: 100%;
+  height: 35px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.searchTab {
+  position: relative;
+}
+
+.searchTab > input {
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 10px;
+  width: 300px;
+  height: 40px;
+  outline: none;
+  text-align: start;
+  padding: 5px;
+  //   background-image: url("/public/images/icon-search.png");
+}
+
+.searchTab > input::placeholder {
+  text-indent: 10px;
+  color: #aaaaaa;
+}
+
+.searchTab > button {
+  position: absolute;
+  right: 8px;
+  top: 12px;
+  width: 25px;
+}
+
+.backButton {
+  //   background: url("/images/icon-arrow-left.png");
+  width: 25px;
+  height: 25px;
+}
+
+.searchResult {
+  margin: 20px;
+  font-size: 12px;
+
+  &_header {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    > p {
+      font-weight: bold;
+    }
+
+    > button {
+      font-size: smaller;
+    }
+  }
+}
+
+.recentSearchList {
+  //   margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recentSearch {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.textArea {
+  display: inline-flex;
+  justify-content: space-between;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.textArea > p {
+  margin: 0;
+}
+
+.textArea > p:last-child {
+  color: #aaaaaa;
+}
+
+.searchButton {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.deleteButton {
+  display: inline;
+  position: absolute;
+  right: 10px;
+  font-size: 10px;
+  border: #aaaaaa solid 1px;
+  border-radius: 10%;
+  width: 50px;
+  height: 25px;
+  margin: 0;
+}
+
+.noData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 150px auto;
+  line-height: 30px;
+  > h3 {
+    font-size: large;
+    font-weight: bold;
+    // margin: 30px;
+  }
+
+  > span {
+    font-size: small;
+    color: #808080;
+  }
+
+  > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin: 30px;
+    width: 215px;
+    height: 38px;
+    color: var(--color-white);
+    background: var(--button-orange);
+  }
+}
