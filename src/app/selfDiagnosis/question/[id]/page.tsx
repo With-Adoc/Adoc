@@ -1,7 +1,6 @@
 "use client";
 
 import Header from "@/components/header";
-import { questions } from "@/app/selfDiagnosis/question/questions";
 import styles from "./page.module.scss";
 import { useState, useEffect, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
