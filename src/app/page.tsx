@@ -19,6 +19,14 @@ export default function Home() {
             priority
           />
         </h1>
+        <Image
+          src="/images/icon-search.png"
+          alt="병원 찾기 아이콘"
+          width={20}
+          height={20}
+          priority
+          onClick={() => router.push("/hospitalSearch")}
+        />
       </header>
       <section className={styles.main}>
         <div>

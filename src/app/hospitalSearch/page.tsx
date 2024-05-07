@@ -9,6 +9,7 @@ export default function HospitalSearch() {
   const router = useRouter();
   const [inputTxt, setInputTxt] = useState("");
   const today = moment().format("MM.DD");
+  const [deleteAll, setDeleteAll] = useState(false);
 
   const [recentResearchData, setRecentResearchData] = useState([
     { hospitalNm: "삼성마음친구정신건강의학과의원", date: "04.10" },
@@ -38,11 +39,26 @@ export default function HospitalSearch() {
       setRecentResearchData([...newItem]);
     } else {
       setRecentResearchData([]);
+      setDeleteAll(false);
     }
   }
 
   return (
     <div className={styles.wrap}>
+      {deleteAll && (
+        <>
+          {" "}
+          <div className={styles.dim}></div>
+          <div className={styles.confirm}>
+            <p>최근 검색어를 모두 삭제 하시겠어요?</p>
+            <div className={styles.confirm_btnWrap}>
+              <button onClick={() => setDeleteAll(false)}>취소</button>
+              <button onClick={() => DeleteHospital("")}>확인</button>
+            </div>
+          </div>
+        </>
+      )}
+
       <div className={styles.search}>
         <button className={styles.backButton} onClick={() => router.back()}>
           <Image
@@ -60,7 +76,7 @@ export default function HospitalSearch() {
           ></input>
           <button onClick={SearchHospital}>
             <Image
-              src="/images/icon-search.png"
+              src="/images/icon-input-search.png"
               width={20}
               height={20}
               alt="검색 버튼"
@@ -75,7 +91,7 @@ export default function HospitalSearch() {
             <div className={styles.searchResult_header}>
               <p>최근 검색어</p>
               {recentResearchData.length > 0 ? (
-                <button onClick={() => DeleteHospital("")}>전체삭제</button>
+                <button onClick={() => setDeleteAll(true)}>전체삭제</button>
               ) : (
                 false
               )}
