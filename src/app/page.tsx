@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "./page.module.scss";
@@ -22,7 +22,11 @@ export default function Home() {
       </header>
       <section className={styles.main}>
         <div>
-          <span>ADHD 진단자들의<br />솔직한 병원 리뷰</span>
+          <span>
+            ADHD 진단자들의
+            <br />
+            솔직한 병원 리뷰
+          </span>
         </div>
         <Image
           src="/images/img-main.png"
@@ -35,7 +39,7 @@ export default function Home() {
       <section className={styles.hospital}>
         <h2 className={styles.title}>리뷰가 많은 ADHD 병원</h2>
         <ul>
-          <li onClick={() => router.push('/hospital-list')}>
+          <li onClick={() => router.push("/hospital-list")}>
             <div>
               <div>
                 <span>소민정신건강의학과의원</span>
@@ -61,7 +65,11 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div>가까워서 아이 병원 옮겨볼까 하고 와봤는데 병원이 크고 깔끔해요. 쓰는 약이야 비슷하겠지만 아이가 선생님을 좋아하네요. 선생님이 친철하세...</div>
+            <div>
+              가까워서 아이 병원 옮겨볼까 하고 와봤는데 병원이 크고 깔끔해요.
+              쓰는 약이야 비슷하겠지만 아이가 선생님을 좋아하네요. 선생님이
+              친철하세...
+            </div>
           </li>
           <li>
             <div>
@@ -89,15 +97,25 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div>가까워서 아이 병원 옮겨볼까 하고 와봤는데 병원이 크고 깔끔해요. 쓰는 약이야 비슷하겠지만 아이가 선생님을 좋아하네요. 선생님이 친철하세...</div>
+            <div>
+              가까워서 아이 병원 옮겨볼까 하고 와봤는데 병원이 크고 깔끔해요.
+              쓰는 약이야 비슷하겠지만 아이가 선생님을 좋아하네요. 선생님이
+              친철하세...
+            </div>
           </li>
         </ul>
       </section>
-      <section className={styles.banner}>
+      <section
+        className={styles.banner}
+        onClick={() => router.push("/customerFeedbackSurvey/1")}
+      >
         <div>
           <div>
             <p>에이닥에게 의견을 보내주세요</p>
-            <p><em>1만원 상당의 기프티콘</em>을<br />추첨을 통해 드릴게요</p>
+            <p>
+              <em>1만원 상당의 기프티콘</em>을<br />
+              추첨을 통해 드릴게요
+            </p>
           </div>
           <Image
             src="/images/img-banner1.png"
@@ -113,21 +131,36 @@ export default function Home() {
         <ul>
           <li>
             <p>소민정신건강의학과의원</p>
-            <span>가까워서 아이 병원 옮겨볼까 하고 와봤는데 병원이 크고 깔끔해요. 쓰는 약이야 비슷하겠지만 아이가 선생님을 좋아하네요. 선생님이 친철...</span>
+            <span>
+              가까워서 아이 병원 옮겨볼까 하고 와봤는데 병원이 크고 깔끔해요.
+              쓰는 약이야 비슷하겠지만 아이가 선생님을 좋아하네요. 선생님이
+              친철...
+            </span>
             <button>리뷰 121개 더보기</button>
           </li>
           <li>
             <p>소민정신건강의학과의원</p>
-            <span>가까워서 아이 병원 옮겨볼까 하고 와봤는데 병원이 크고 깔끔해요. 쓰는 약이야 비슷하겠지만 아이가 선생님을 좋아하네요. 선생님이 친철...</span>
+            <span>
+              가까워서 아이 병원 옮겨볼까 하고 와봤는데 병원이 크고 깔끔해요.
+              쓰는 약이야 비슷하겠지만 아이가 선생님을 좋아하네요. 선생님이
+              친철...
+            </span>
             <button>리뷰 121개 더보기</button>
           </li>
         </ul>
       </section>
-      <section className={styles.banner}>
-        <div style={{background: 'var(--banner-skyblue)'}}>
+      <section
+        className={styles.banner}
+        onClick={() => router.push("/selfDiagnosis")}
+      >
+        <div style={{ background: "var(--banner-skyblue)" }}>
           <div>
             <p>ADHD를 의심 중인가요?</p>
-            <p>세계보건기구 WHO에서 개발한<br /><em>자가테스트</em>를 진행해 보세요</p>
+            <p>
+              세계보건기구 WHO에서 개발한
+              <br />
+              <em>자가테스트</em>를 진행해 보세요
+            </p>
           </div>
           <Image
             src="/images/img-banner2.png"
@@ -141,7 +174,7 @@ export default function Home() {
       <section className={styles.article}>
         <h2 className={styles.title}>아티클</h2>
         <ul>
-          <li>
+          <li onClick={() => router.push("/article/1")}>
             <div>
               <Image
                 src="/images/img-article1.png"
@@ -153,8 +186,8 @@ export default function Home() {
             </div>
             <p>정말 정신건강의학과 진료를 받으면 사회적 불이익을 받을까?</p>
           </li>
-          <li>
-            <div style={{background: 'var(--article-purple)'}}>
+          <li onClick={() => router.push("/article/2")}>
+            <div style={{ background: "var(--article-purple)" }}>
               <Image
                 src="/images/img-article1.png"
                 alt="아티클 이미지"
