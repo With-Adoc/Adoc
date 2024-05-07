@@ -11,7 +11,7 @@ export default function Intro() {
   return (
     <div className={styles.wrap}>
       <Header headerTitle="자가테스트" />
-      <section className="image">
+      <section className={styles.introImage}>
         <Image
           src="/images/selfDiagnosis/intro.png"
           width={350}
