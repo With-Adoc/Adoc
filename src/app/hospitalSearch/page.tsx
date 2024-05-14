@@ -2,32 +2,70 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import HospitalList from "@/app/hospital-list/page";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../reducers";
+import { setSearchData } from "../reducers/hospitalSearch";
+import LocalStorage from "../reducers/localstorage";
 
 export default function HospitalSearch() {
   const router = useRouter();
+  useEffect(() => {});
+  const searchData = useSelector(
+    (state: RootState) => state.hospitalSearch.hospitalSearchData
+  );
+  console.log("searchData", searchData);
+  const dispatch = useDispatch();
   const [inputTxt, setInputTxt] = useState("");
   const today = moment().format("MM.DD");
   const [deleteAll, setDeleteAll] = useState(false);
+  const [searchYn, setSearchYn] = useState(false);
 
-  const [recentResearchData, setRecentResearchData] = useState([
-    { hospitalNm: "삼성마음친구정신건강의학과의원", date: "04.10" },
-    { hospitalNm: "연세소담정신건강의학과의원", date: "04.12" },
-    { hospitalNm: "이준호정신건강의학과의원", date: "04.14" },
-    { hospitalNm: "소민정신건강의학과의원", date: "04.19" },
-    { hospitalNm: "삼성마음친구정신건강의학과의원", date: "04.20" },
-  ]);
+  useEffect(() => {
+    if (searchYn) {
+      document.getElementsByTagName("header")[0].style.display = "none";
+      document.getElementsByTagName("footer")[0].style.display = "none";
+    }
+  });
+
+  const [recentResearchData, setRecentResearchData] = useState([]);
+
+  useEffect(() => {
+    setRecentResearchData(searchData);
+  }, [searchData]);
 
   function SearchHospital() {
+    if (inputTxt === "") return;
     const newItem: { hospitalNm: string; date: string } = {
       hospitalNm: inputTxt,
       date: today,
     };
+
+    if (searchData !== null) {
+      LocalStorage.setItem(
+        "adocSearchData",
+        JSON.stringify([newItem, ...searchData])
+      );
+    } else {
+      LocalStorage.setItem("adocSearchData", JSON.stringify([newItem]));
+    }
     setRecentResearchData([newItem, ...recentResearchData]);
+    dispatch(setSearchData([newItem, ...recentResearchData]));
+    setInputTxt("");
+    setSearchYn(true);
 
     console.log("recentResearchData", recentResearchData);
   }
+
+  const handleKeyDown = (e) => {
+    if (e.target.value === "") return;
+    if (e.key === "Enter") {
+      setInputTxt(e.target.value);
+      SearchHospital();
+    }
+  };
 
   function DeleteHospital(idx?: string) {
     console.log("idx", idx);
@@ -37,9 +75,13 @@ export default function HospitalSearch() {
       console.log("newItem", newItem);
       console.log("recentResearchData", recentResearchData);
       setRecentResearchData([...newItem]);
+      LocalStorage.setItem("adocSearchData", JSON.stringify([...newItem]));
+      dispatch(setSearchData([...newItem]));
     } else {
       setRecentResearchData([]);
+      dispatch(setSearchData([]));
       setDeleteAll(false);
+      LocalStorage.removeItem("adocSearchData");
     }
   }
 
@@ -73,6 +115,7 @@ export default function HospitalSearch() {
             value={inputTxt}
             placeholder="병원이름을 입력해보세요."
             onChange={(e) => setInputTxt(e.target.value)}
+            onKeyDown={handleKeyDown}
           ></input>
           <button onClick={SearchHospital}>
             <Image
@@ -86,7 +129,7 @@ export default function HospitalSearch() {
         </div>
       </div>
       <div className={styles.searchResult}>
-        {recentResearchData.length > 0 ? (
+        {!searchYn && recentResearchData.length > 0 ? (
           <>
             <div className={styles.searchResult_header}>
               <p>최근 검색어</p>
@@ -116,7 +159,7 @@ export default function HospitalSearch() {
               </div>
             ))}
           </>
-        ) : (
+        ) : !searchYn && recentResearchData.length === 0 ? (
           <div className={styles.noData}>
             <Image
               src="/images/no-hospital.png"
@@ -132,6 +175,23 @@ export default function HospitalSearch() {
               정보 요청하기
             </button>
           </div>
+        ) : (
+          searchYn && (
+            <>
+              <HospitalList />
+              <div className={`${styles.noData} ${styles.listbottom}`}>
+                <h3>찾으시는 병원 정보가 없나요?</h3>
+                <span>정보를 알려주시면 에이닥이 빠르게 개선할게요</span>
+                <button
+                  onClick={() =>
+                    window.open("https://forms.gle/e4rVnJ4zbkang23P6")
+                  }
+                >
+                  정보 요청하기
+                </button>
+              </div>
+            </>
+          )
         )}
       </div>
     </div>

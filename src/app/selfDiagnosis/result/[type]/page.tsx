@@ -11,6 +11,7 @@ export default function Result({ params }: { params: { type: string } }) {
   console.log(params.type);
   const result = results.find((r) => r.type === params.type.toUpperCase());
   console.log(result);
+
   return (
     <div className={styles.wrap}>
       <Header headerTitle="해설" />

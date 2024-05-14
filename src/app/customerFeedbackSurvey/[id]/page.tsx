@@ -3,8 +3,11 @@
 import Header from "@/components/header";
 import styles from "./page.module.scss";
 import Image from "next/image";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../reducers";
+import { setFeedback } from "../../reducers/customerFeedbackSurvey";
 
 export default function CustomerFeedbackSurvey({
   params,
@@ -12,6 +15,11 @@ export default function CustomerFeedbackSurvey({
   params: { id: string };
 }) {
   const router = useRouter();
+  const customerFeedback = useSelector(
+    (state: RootState) => state.customerFeedbackSurvey.customerFeedback
+  );
+  // console.log("customerFeedback", customerFeedback);
+  const dispatch = useDispatch();
   const questions = useMemo(
     () => [
       {
@@ -56,7 +64,7 @@ export default function CustomerFeedbackSurvey({
     ],
     []
   );
-  console.log("id", params.id);
+  // console.log("id", params.id);
   const [qst, setQst] = useState(null);
   const [current, setCurrent] = useState(+params.id);
   const qstInfo = questions.find((q) => q.questionId === params.id);
@@ -65,21 +73,61 @@ export default function CustomerFeedbackSurvey({
     setQst(qstInfo);
   }, [qstInfo]);
 
-  console.log("qstInfo", qstInfo);
-  console.log("qst", qst);
+  // console.log("qstInfo", qstInfo);
+  // console.log("qst", qst);
 
   const progressPercent = (+params.id / questions.length) * 100;
 
-  function clickAnswer(e) {
-    console.log(">>>>>>>>>>>>");
-    console.log(e.target.value);
-    console.log(e.target.checked);
-    console.log(">>>>>>>>>>>>");
+  const answerValue = useRef<HTMLTextAreaElement>(null);
+
+  function clickAnswer(e, qst) {
+    let value;
+    if (qst.questionType === "1") {
+      value = { qstId: qst.questionId, answer: e.target.value };
+    } else {
+      if (answerValue.current.value === "") return;
+      value = {
+        qstId: qst.questionId,
+        answer: answerValue.current.value,
+      };
+    }
+
+    let feedback;
+    if (
+      customerFeedback.filter((feedback) => feedback.qstId === qst.questionId)
+        .length > 0
+    ) {
+      feedback = [
+        ...customerFeedback.filter(
+          (feedback) => feedback.qstId !== qst.questionId
+        ),
+        value,
+      ];
+    } else {
+      feedback = [...customerFeedback, value];
+    }
+
+    dispatch(setFeedback(feedback));
+
+    // console.log("value", value);
+    // console.log(">>>>>>>>>>>>");
+    // console.log(e.target.value);
+    // console.log(e.target.checked);
+    // console.log(">>>>>>>>>>>>");
 
     if (!isNaN(e.target.value)) {
       router.push(`/customerFeedbackSurvey/${current + 1}`);
     }
+
+    if (params.id === String(questions.length)) {
+      save();
+    }
   }
+
+  const save = () => {
+    console.log("save>>>>>>");
+    // TODO : save 후 clear 하기기
+  };
 
   return (
     <div className={styles.wrap}>
@@ -150,7 +198,7 @@ export default function CustomerFeedbackSurvey({
                         <label
                           key={answ.scr}
                           htmlFor={`answ_` + answ.scr}
-                          onClick={() => clickAnswer(event)}
+                          onClick={(e) => clickAnswer(e, qst)}
                         >
                           <input
                             className={styles.questions_answer__input}
@@ -166,6 +214,7 @@ export default function CustomerFeedbackSurvey({
                     ) : (
                       <div className={styles.questions_answer}>
                         <textarea
+                          ref={answerValue}
                           placeholder={qst?.answerPlaceholder}
                         ></textarea>
                       </div>
@@ -179,7 +228,7 @@ export default function CustomerFeedbackSurvey({
           </div>
           {(qst !== null && qst?.questionType) !== "1" ? (
             <button
-              onClick={() => clickAnswer(event)}
+              onClick={(e) => clickAnswer(e, qst)}
               className={styles.survey_btn}
             >
               다음
