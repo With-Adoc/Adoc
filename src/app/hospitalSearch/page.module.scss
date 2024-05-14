@@ -126,6 +126,7 @@
   align-items: center;
   margin: 150px auto;
   line-height: 30px;
+
   > h3 {
     font-size: large;
     font-weight: bold;
@@ -147,6 +148,15 @@
     height: 38px;
     color: var(--color-white);
     background: var(--button-orange);
+  }
+}
+
+.listbottom {
+  border-top: 1px solid #e6e6e6;
+  margin: 0 auto;
+  line-height: 0;
+  > h3 {
+    margin: 30px;
   }
 }
 

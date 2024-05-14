@@ -8,8 +8,11 @@
   * {
     font-family: "Pretendard";
     max-width: 440px;
-    // min-width: 375px;
   }
+}
+
+.intro {
+  margin: 30px;
 }
 
 .introImage {
@@ -19,6 +22,7 @@
 .summary {
   display: block;
   line-height: 1.4rem;
+  margin-top: 30px;
   margin-bottom: 4rem;
   &_box {
     background-color: #f2f2f2;
@@ -64,7 +68,7 @@
 }
 
 .information {
-  margin: 0.6rem;
+  // margin: 0.6rem;
 
   > h1 {
     font-size: 1.2rem;
@@ -83,8 +87,8 @@
   display: flex;
   justify-content: center;
   height: 112px;
-  border-top: 1px solid var(--border-gray);
   padding-top: 16px;
+  margin-top: 35px;
   button {
     display: flex;
     align-items: center;

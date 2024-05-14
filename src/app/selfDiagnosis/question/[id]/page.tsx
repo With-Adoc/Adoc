@@ -2,18 +2,26 @@
 
 import Header from "@/components/header";
 import styles from "./page.module.scss";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useReducer } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../reducers";
+import { setAnswers } from "../../../reducers/selfDiagnosis";
 
 export default function SelfDiagnosisQuestion({
   params,
 }: {
   params: { id: string };
 }) {
+  const userAnswer = useSelector(
+    (state: RootState) => state.selfDiagnosisSlice.userAnswer
+  );
+  const dispatch = useDispatch();
+
   const pathname = usePathname();
   const router = useRouter();
-  console.log("pathname", pathname);
-  console.log("router", router);
+  // console.log("pathname", pathname);
+  // console.log("router", router);
   const questions = useMemo(
     () => [
       {
@@ -264,17 +272,27 @@ export default function SelfDiagnosisQuestion({
   const progressPercent = (+params.id / questions.length) * 100;
 
   function clickAnswer(e) {
-    console.log(">>>>>>>>>>>>");
-    console.log(e.target.value);
-    console.log(e.target.checked);
-    console.log(">>>>>>>>>>>>");
+    // console.log(">>>>>>>>>>>>");
+    // console.log(e.target.value);
+    // console.log(e.target.checked);
+    // console.log(">>>>>>>>>>>>");
 
     if (!isNaN(e.target.value)) {
+      let answers;
+      if (userAnswer.filter((answer) => answer.qstId === current).length > 0) {
+        answers = [
+          ...userAnswer.filter((answer) => answer.qstId !== current),
+          { qstId: current, answer: e.target.value },
+        ];
+      } else {
+        answers = [...userAnswer, { qstId: current, answer: e.target.value }];
+      }
+      dispatch(setAnswers(answers));
       const num = sum + +e.target.value;
       setSum(num);
-      console.log("sum", sum);
-      console.log("+e.target.value", +e.target.value);
-      console.log("num", num);
+      // console.log("sum", sum);
+      // console.log("+e.target.value", +e.target.value);
+      // console.log("num", num);
 
       const qstInfo = questions.find(
         (q) => q.questionId === String(current + 1)
@@ -282,7 +300,21 @@ export default function SelfDiagnosisQuestion({
       setQst(qstInfo);
 
       if (current === questions.length) {
-        router.push(`/selfDiagnosis/result/a`, { scroll: true });
+        const answersForCal = answers.filter((answer) => answer.qstId < 7);
+        let resultType = "a";
+        answersForCal.forEach((answer) => {
+          if (answer.qstId < 4) {
+            if (answer.answer < 3) {
+              resultType = "b";
+            }
+          } else {
+            if (answer.answer < 4) {
+              resultType = "b";
+            }
+          }
+        });
+        console.log("current === questions.length::userAnswer", answers);
+        router.push(`/selfDiagnosis/result/${resultType}`, { scroll: true });
       } else {
         router.push(`/selfDiagnosis/question/${current + 1}`, { scroll: true });
       }
